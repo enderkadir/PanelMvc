@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<MvcBlog.Models.Makale>
+
+@helper Kisalt(string metin)
+{
+    if (metin.Length > 300)
+    {
+       <p> @metin.Substring(0, 300); </p> 
+    }
+        
+    else
+    {
+       <p> @metin </p>
+    }
+       
+}
+
+
+@foreach (var makale in Model)
+{
+
+    <article class="blog-post">
+        <header>
+            <h2>
+                <a href="/Makale/Detay/@makale.id">
+                @makale.Baslik
+                    .</a>
+                                    </h2>
+                                    <ul class="info">
+                                        <li><a href="/Kategori/Index/@makale.KategoriID">{ @makale.Kategori.Adi }</a></li>
+                                        <li><a href="/Makale/TariheGoreListe?yil=@makale.YayimTarihi.Year&ay=@makale.YayimTarihi.Month">{ @makale.YayimTarihi.ToString("MMMM yyyy")}</a></li>
+                                        <li><a href="/Yazar/Index/@makale.YazarID">{ @makale.Kullanici.Adi @makale.Kullanici.Soyadi }</a></li>
+                                        <li>{ Yorumlar: <a href="#">@makale.Yorums.Count</a> }</li>
+                                        <li>{Beğeni : @makale.Begeni } </li>
+                                        <li>{Görüntülenme : @makale.Goruntuleme} </li>
+                                    </ul>
+                                </header>
+                                <div class="content">
+                                    <figure>
+                                        <a href="/Makale/Detay/@makale.id">
+                                            <img src="@makale.Resim.OrtaResimYol" alt=""/>
+                                        </a>
+                                    </figure>
+                                    <div class="text">
+                                        @{
+                                              Kisalt(makale.Icerik);
+                                        }
+                                    </div>
+                                    <a href="/Makale/Detay/@makale.id" class="btn btn-default">Oku</a>
+                                </div>
+                            </article>
+}

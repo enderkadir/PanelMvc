@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="widget posts">
+    <h5>Makaleler</h5>
+    <div class="widget-tabs">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#popular" data-toggle="tab">Popüler</a></li>
+            <li><span>/</span></li>
+            <li><a href="#fresh" data-toggle="tab">Tazeler</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="popular">
+                <ul>
+                    
+                  
+                    <li>
+                        <figure>
+                            <a href="#">
+                                <img src="/Content/content/jscontent/widget-post03.jpg" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="#">Dragee jelly beans drag underwear</a>
+                            <a href="#" class="category">{ Branding }</a>
+                        </div>
+                    </li>
+                    <li>
+                        <figure>
+                            <a href="#">
+                                <img src="/Content/content/jscontent/widget-post04.jpg" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="#">Apple pie bear claw marzipan donut.</a>
+                            <a href="#" class="category">{ Icons }</a>
+                        </div>
+                    </li>
+                    <li>
+                        <figure>
+                            <a href="#">
+                                <img src="/Content/content/jscontent/widget-post05.jpg" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="#">Liquorice muffin I love carrot cake apple pie.</a>
+                            <a href="#" class="category">{ Mobile Applications }</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="fresh">
+                <ul>
+                    @{
+                        MvcBlog.Models.Makale m = new MvcBlog.Models.Makale();
+                    }
+                    @foreach (var pop in ViewBag.Populer)
+                    {
+                        
+                        
+                   
+                    <li>
+                        <figure>
+                            <a href="/Makale/Detay/@pop.id">
+                                <img src="@pop.Resim.KucukResimYol" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="/Makale/Detay/@pop.id">@pop.Baslik</a>
+                            <a href="/Kategori/Index/@pop.KategoriID" class="category">{ @pop.Kategori.Adi }</a>
+                        </div>
+                    </li> }
+                   
+                   
+                   
+               
+                </ul>
+            </div>
+            <div class="tab-pane" id="fresh">
+                <ul>
+                    <li>
+                        @foreach (var son in ViewBag.Fresh)
+                        {
+                            
+                        
+
+                        <figure>
+                            <a href="/Makale/Detay/@son.id">
+                                <img src="@son.Resim.KucukResimYol" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="/Makale/Detay/@son.id">@son.Baslik</a>
+                            <a href="/Kategori/Index/@son.KategoriID"  class="category">{ @son.Kategori.Adi }</a>
+                        </div>
+                    
+                        }
+                    
+                    
+                   
+                   
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
